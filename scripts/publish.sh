@@ -11,8 +11,3 @@ python3 -m pip install --user --upgrade twine
 
 # Build
 python3 setup.py sdist bdist_wheel
-
-# Push to PyPi
-python3 -m twine upload dist/*
-
-# Enter credentials manually :P
