@@ -18,7 +18,7 @@ class CalendarService:
         self._calendar_refresh_url = "%s/events" % self._calendar_endpoint
         self._calendar_event_detail_url = f"{self._calendar_endpoint}/eventdetail"
         self._calendars = "%s/startup" % self._calendar_endpoint
-
+        self.params["dsid"] = self.session.service.data["dsInfo"]["dsid"]
         self.response = {}
 
     def get_event_detail(self, pguid, guid):
@@ -52,7 +52,6 @@ class CalendarService:
                 "usertz": get_localzone_name(),
                 "startDate": from_dt.strftime("%Y-%m-%d"),
                 "endDate": to_dt.strftime("%Y-%m-%d"),
-                "dsid": self.session.service.data["dsInfo"]["dsid"],
             }
         )
         req = self.session.get(self._calendar_refresh_url, params=params)
